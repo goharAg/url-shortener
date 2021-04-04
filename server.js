@@ -7,8 +7,13 @@ const connections = require("./connections");
 
 (async () => {
   //connecting to DB
-  await connections.connectDB();
+  await connections.connectDB;
+  console.log("DB connected")
 
+
+  const port = process.env.PORT || 5000;
   //connecting to Server
-  await connections.connectServer();
+  await app.listen(port, () => {
+    console.log(`Server started on http://localhost:${port}`);
+  });
 })();
