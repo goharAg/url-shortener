@@ -4,7 +4,7 @@ const express = require("express");
 
 
 
-const port = process.env.PORT || 3003;
+const port = process.argv[2] || process.env.PORT || 3003;
 
 //connecting to DB and Server
 module.exports.connect = async (app) => {
