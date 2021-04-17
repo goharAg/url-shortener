@@ -16,7 +16,8 @@ client.on("connect", async () => {
   });
 });
 router.get("/",(req,res)=>{
-  res.send("Hello World");
+  console.log("Hello")
+  res.send("Welocme to URL Shortener \n Creators Gohar and Yura");
 });
 
 router.get("/:shortUrl", (req, res) => {
@@ -30,8 +31,9 @@ router.get("/:shortUrl", (req, res) => {
 
 router.post("/api/set/longUrl", (req, res) => {
   let shortid = shortID.generate();
-  client.set(shortid, req.body.id, redis.print);
-  let newData = new Data({ shortURL: shortid, longURL: req.body.id });
+  let url = req.body.id || "https://www.youtube.com/";
+  client.set(shortid, url);
+  let newData = new Data({ shortURL: shortid, longURL: url });
   newData.save();
   res.send(shortid);
 });
